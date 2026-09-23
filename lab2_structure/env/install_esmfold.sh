@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# install_esmfold.sh — ESMFold environment for BIO 462/594 Comp Lab 2
+# install_esmfold.sh  -  ESMFold environment for BIO 462/594 Comp Lab 2
 # Ohio Supercomputer Center | Pitzer | project PNS0503
 #
 # Run this ONCE, on a GPU compute node (the CUDA kernel needs nvcc):
