@@ -21,6 +21,9 @@ cd ~/osc_classes
 git clone https://github.com/asathyanesan/bio462_complabs.git
 ```
 
+Start Jupyter from OSC OnDemand. In the launch form, set **Project Directory** to
+`~/osc_classes/bio462_complabs` instead of the default `$HOME`.
+
 Then change into that day's lab directory before opening the notebook. This keeps the notebook's
 relative `data/` paths working in Jupyter:
 
