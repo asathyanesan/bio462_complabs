@@ -11,8 +11,9 @@ via OnDemand Jupyter.
 
 ## In class: first step
 
-Log in to [OSC OnDemand](https://ondemand.osc.edu), open Jupyter, open a Terminal, and clone
-**your own copy** (never edit a shared folder):
+Log in to <a href="https://ondemand.osc.edu" target="_blank" rel="noopener noreferrer">OSC OnDemand</a>.
+Then click **Clusters** -> **>_ Pitzer Shell Access**. In the shell that opens, clone **your own
+copy** (never edit a shared folder):
 
 ```bash
 cd ~
