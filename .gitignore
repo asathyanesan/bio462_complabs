@@ -1,0 +1,7 @@
+# large dataset - download via lab3_singlecell/data/download_dataset.py
+*.h5ad
+# instructor materials live outside this repo
+instructor_only/
+# dry-run outputs
+*_exec.ipynb
+.ipynb_checkpoints/
