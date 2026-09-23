@@ -17,14 +17,15 @@ copy** (never edit a shared folder):
 
 ```bash
 cd ~
-git clone https://github.com/asathyanesan/bio462_complabs.git osc_classes
+cd ~/osc_classes
+git clone https://github.com/asathyanesan/bio462_complabs.git
 ```
 
 Then change into that day's lab directory before opening the notebook. This keeps the notebook's
 relative `data/` paths working in Jupyter:
 
 ```bash
-cd ~/osc_classes/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
+cd ~/osc_classes/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
 ```
 
 Open `Lab1_Student.ipynb` (or the notebook for the day), select the kernel your instructor
@@ -36,7 +37,7 @@ private working copy.
 The single-cell dataset is too large for GitHub. After cloning, run once:
 
 ```bash
-cd ~/osc_classes/lab3_singlecell
+cd ~/osc_classes/bio462_complabs/lab3_singlecell
 python data/download_dataset.py
 ```
 
