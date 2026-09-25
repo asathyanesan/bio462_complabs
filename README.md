@@ -11,36 +11,45 @@ via OnDemand Jupyter.
 
 ## In class: first step
 
-Log in to <a href="https://ondemand.osc.edu" target="_blank" rel="noopener noreferrer">OSC OnDemand</a>.
-Then click **Clusters** -> **>_ Pitzer Shell Access**. In the shell that opens, clone **your own
-copy** (never edit a shared folder):
+Log in to [OSC Classroom](https://class.osc.edu) and click **Classroom Jupyter**. Before starting
+the session, use these settings for the lab:
+
+| Parameter | Lab 1 (Sep 29) | Lab 2 (Nov 5) | Lab 3 (Dec 3) |
+|---|---|---|---|
+| Classroom | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON |
+| Size | **medium** (2 core / 8 GB) | **extra-large** (8 core / 32 GB) | **extra-large** (8 core / 32 GB) |
+| Hours | 2 hours | 2 hours | 2 hours |
+| GPUs | 0 | 1 | 0 |
+| JupyterLab | Leave unchecked | Leave unchecked | Leave unchecked |
+
+Students should work from their own copy, not a shared folder. Clone the repository into the
+materials directory:
 
 ```bash
 cd ~
-cd ~/osc_classes
+cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
 git clone https://github.com/asathyanesan/bio462_complabs.git
 ```
 
-Start Jupyter from OSC OnDemand. In the launch form, set **Project Directory** to
-`~/osc_classes/bio462_complabs` instead of the default `$HOME`.
+In the Classroom Jupyter launch form, set **Project Directory** to
+`/users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs` instead of the default `$HOME`.
 
 Then change into that day's lab directory before opening the notebook. This keeps the notebook's
 relative `data/` paths working in Jupyter:
 
 ```bash
-cd ~/osc_classes/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
+cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
 ```
 
 Open `Lab1_Student.ipynb` (or the notebook for the day), select the kernel your instructor
-announces, and run from the top. Keep the clone in your home directory so each student has a
-private working copy.
+announces, and run from the top.
 
 ## Lab 3: one extra step (217 MB dataset)
 
 The single-cell dataset is too large for GitHub. After cloning, run once:
 
 ```bash
-cd ~/osc_classes/bio462_complabs/lab3_singlecell
+cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab3_singlecell
 python data/download_dataset.py
 ```
 
