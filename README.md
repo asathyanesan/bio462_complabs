@@ -18,7 +18,7 @@ the session, use these settings for the lab:
 |---|---|---|---|
 | Classroom | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON |
 | Size | **medium** (2 core / 8 GB) | **extra-large** (8 core / 32 GB) | **extra-large** (8 core / 32 GB) |
-| Hours | 2 hours | 2 hours | 2 hours |
+| Hours | 3 hours | 3 hours | 3 hours |
 | GPUs | 0 | 1 | 0 |
 | JupyterLab | Leave unchecked | Leave unchecked | Leave unchecked |
 
