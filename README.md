@@ -9,6 +9,11 @@ via OnDemand Jupyter.
 | 2 | Thu Nov 5 | Protein structure prediction (ESMFold, pLDDT/PAE) | Nov 12 |
 | 3 | Thu Dec 3 | Single-cell annotation of COVID PBMCs (Scanpy + CellTypist) | Dec 11 |
 
+## OSC walkthrough videos
+
+- [Log in to OSC Classroom, start a Pitzer shell, and clone the course repository](videos/osc_classroom_shell_clone.mp4)
+- [Start a Jupyter session on OSC Classroom](videos/osc_classroom_jupyter_launch.mp4)
+
 ## In class: first step
 
 Log in to [OSC Classroom](https://class.osc.edu) and click **Classroom Jupyter**. Before starting
