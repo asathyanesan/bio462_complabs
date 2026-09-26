@@ -11,8 +11,13 @@ via OnDemand Jupyter.
 
 ## OSC walkthrough videos
 
-- [Log in to OSC Classroom, start a Pitzer shell, and clone the course repository](videos/osc_classroom_shell_clone.mp4)
-- [Start a Jupyter session on OSC Classroom](videos/osc_classroom_jupyter_launch.mp4)
+**1. Log in to OSC Classroom, start a Pitzer shell, and clone the course repository:**
+
+https://raw.githubusercontent.com/asathyanesan/bio462_complabs/main/videos/osc_classroom_shell_clone.mp4
+
+**2. Start a Jupyter session on OSC Classroom:**
+
+https://raw.githubusercontent.com/asathyanesan/bio462_complabs/main/videos/osc_classroom_jupyter_launch.mp4
 
 ## In class: first step
 
