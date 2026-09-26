@@ -13,11 +13,11 @@ via OnDemand Jupyter.
 
 **1. Log in to OSC Classroom, start a Pitzer shell, and clone the course repository:**
 
-https://raw.githubusercontent.com/asathyanesan/bio462_complabs/main/videos/osc_classroom_shell_clone.mp4
+https://github.com/user-attachments/assets/aedb4ece-e749-4402-878e-d00d7e82822b
 
 **2. Start a Jupyter session on OSC Classroom:**
 
-https://raw.githubusercontent.com/asathyanesan/bio462_complabs/main/videos/osc_classroom_jupyter_launch.mp4
+https://github.com/user-attachments/assets/4faf9422-d08e-45fc-99d1-272bd4228b8b
 
 ## In class: first step
 
