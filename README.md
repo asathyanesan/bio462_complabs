@@ -33,22 +33,22 @@ the session, use these settings for the lab:
 | JupyterLab | Leave unchecked | Leave unchecked | Leave unchecked |
 
 Students should work from their own copy, not a shared folder. Clone the repository into the
-materials directory:
+materials directory in your PNS0503 home account:
 
 ```bash
 cd ~
-cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
+cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
 git clone https://github.com/asathyanesan/bio462_complabs.git
 ```
 
 In the Classroom Jupyter launch form, set **Project Directory** to
-`/users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs` instead of the default `$HOME`.
+`/users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs` instead of the default `$HOME`.
 
 Then change into that day's lab directory before opening the notebook. This keeps the notebook's
 relative `data/` paths working in Jupyter:
 
 ```bash
-cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
+cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
 ```
 
 Open `Lab1_Student.ipynb` (or the notebook for the day), select the kernel your instructor
@@ -59,7 +59,7 @@ announces, and run from the top.
 The single-cell dataset is too large for GitHub. After cloning, run once:
 
 ```bash
-cd /users/PNS0489/aaronsathya1/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab3_singlecell
+cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab3_singlecell
 python data/download_dataset.py
 ```
 
