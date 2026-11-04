@@ -16,8 +16,7 @@ existing personal copy. First log into your <a href="https://class.osc.edu" targ
 fetch the latest version, then replace the old Lab 2 folder with the new one:
 
 ```bash
-cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
-cd bio462_complabs
+cd osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs
 git fetch origin main
 git restore --source=FETCH_HEAD --worktree -- lab2_structure lab2_protein_design
 cd lab2_protein_design
