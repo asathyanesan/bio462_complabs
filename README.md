@@ -24,8 +24,7 @@ cd lab2_protein_design
 
 The restore removes the replaced `lab2_structure/` files and downloads the current
 `lab2_protein_design/` files; it leaves the other lab folders unchanged. Save any personal changes
-you want to keep from either Lab 2 folder elsewhere first. Open `Lab2_Student.ipynb` in the
-updated folder in Jupyter and select the ESM3 kernel your instructor announces.
+you want to keep from either Lab 2 folder elsewhere first. Instructions to start the Jupyter notebook for this lab are in the <a href="https://github.com/asathyanesan/bio462_complabs/raw/refs/heads/main/lab2_protein_design/Lab2_PreLab_Handout.docx" target="_blank" rel="noopener noreferrer">Pre-lab handout doc</a>. Once the jupyter app has been initiated, open `Lab2_Student.ipynb` in the updated folder in Jupyter and select the ESM3 kernel your instructor announces.
 
 ## Lab 3 — one extra step (217 MB dataset)
 
