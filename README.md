@@ -12,8 +12,8 @@ via OnDemand Jupyter.
 ## Get Lab 2 on OSC
 
 Students who already cloned the full repository should update only the Lab 2 files in their
-existing personal copy. In an OSC terminal, fetch the latest version, then replace the old Lab 2
-folder with the new one:
+existing personal copy. Open an [OSC terminal](https://class.osc.edu/pun/sys/shell/ssh/pitzer.osc.edu),
+fetch the latest version, then replace the old Lab 2 folder with the new one:
 
 ```bash
 cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
