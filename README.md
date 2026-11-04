@@ -1,4 +1,4 @@
-# BIO 462/594 Molecular Biology: Computational Labs
+# BIO 462/594 Molecular Biology — Computational Labs
 
 Fall 2026, University of Dayton. Labs run on the Ohio Supercomputer Center (OSC) Pitzer cluster
 via OnDemand Jupyter.
@@ -6,75 +6,54 @@ via OnDemand Jupyter.
 | Lab | Date | Topic | Report due |
 |---|---|---|---|
 | 1 | Tue Sep 29 | Variant interpretation (AlphaMissense + ClinVar + ACMG) | Oct 13 |
-| 2 | Thu Nov 5 | Protein structure prediction (ESMFold, pLDDT/PAE) | Nov 12 |
+| 2 | Thu Nov 5 | Protein design with ESM3 (generative, novel proteins) | Nov 12 |
 | 3 | Thu Dec 3 | Single-cell annotation of COVID PBMCs (Scanpy + CellTypist) | Dec 11 |
 
-## OSC walkthrough videos
+## Get Lab 2 on OSC
 
-**1. Log in to OSC Classroom, start a Pitzer shell, and clone the course repository:**
-
-https://github.com/user-attachments/assets/aedb4ece-e749-4402-878e-d00d7e82822b
-
-**2. Start a Jupyter session on OSC Classroom:**
-
-https://github.com/user-attachments/assets/4faf9422-d08e-45fc-99d1-272bd4228b8b
-
-## In class: first step
-
-Log in to [OSC Classroom](https://class.osc.edu) and click **Classroom Jupyter**. Before starting
-the session, use these settings for the lab:
-
-| Parameter | Lab 1 (Sep 29) | Lab 2 (Nov 5) | Lab 3 (Dec 3) |
-|---|---|---|---|
-| Classroom | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON | BIOLOGICAL DISCOVERY DAYTON |
-| Size | **medium** (2 core / 8 GB) | **extra-large** (8 core / 32 GB) | **extra-large** (8 core / 32 GB) |
-| Hours | 3 hours | 3 hours | 3 hours |
-| GPUs | 0 | 1 | 0 |
-| JupyterLab | Leave unchecked | Leave unchecked | Leave unchecked |
-
-Students should work from their own copy, not a shared folder. Clone the repository into the
-materials directory in your PNS0503 home account:
+Students who already cloned the full repository should update only the Lab 2 files in their
+existing personal copy. In an OSC terminal, fetch the latest version, then replace the old Lab 2
+folder with the new one:
 
 ```bash
-cd ~
 cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials
-git clone https://github.com/asathyanesan/bio462_complabs.git
+cd bio462_complabs
+git fetch origin main
+git restore --source=FETCH_HEAD --worktree -- lab2_structure lab2_protein_design
+cd lab2_protein_design
 ```
 
-In the Classroom Jupyter launch form, set **Project Directory** to
-`/users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs` instead of the default `$HOME`.
+The restore removes the replaced `lab2_structure/` files and downloads the current
+`lab2_protein_design/` files; it leaves the other lab folders unchanged. Save any personal changes
+you want to keep from either Lab 2 folder elsewhere first. Open `Lab2_Student.ipynb` in the
+updated folder in Jupyter and select the ESM3 kernel your instructor announces.
 
-Then change into that day's lab directory before opening the notebook. This keeps the notebook's
-relative `data/` paths working in Jupyter:
-
-```bash
-cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab1_variant_interpretation   # or lab2_structure / lab3_singlecell
-```
-
-Open `Lab1_Student.ipynb` (or the notebook for the day), select the kernel your instructor
-announces, and run from the top.
-
-## Lab 3: one extra step (217 MB dataset)
+## Lab 3 — one extra step (217 MB dataset)
 
 The single-cell dataset is too large for GitHub. After cloning, run once:
 
 ```bash
-cd /users/PNS0503/<your_username>/osc_classes/BIOLOGICAL_DISCOVERY_DAYTON/materials/bio462_complabs/lab3_singlecell
+cd ~/bio462_complabs/lab3_singlecell
 python data/download_dataset.py
 ```
 
-The dataset is saved in `lab3_singlecell/data/`, where the notebook expects it. You can run the
-command from any directory by using the script's full path. Do this during the pre-class buffer:
+or run the first notebook cell, which does the same thing. Do this during the pre-class buffer —
 the download takes about a minute on OSC.
 
-## Lab 2: environment
+## Lab 2 — environment
 
-Lab 2 uses a pre-built `esmfold` environment on OSC. Select the kernel your instructor announces;
-you do not need to install anything. Do not run `env/install_esmfold.sh`; it is for instructor
-provisioning only.
+Lab 2 uses ESM3-open for generative protein design. The instructor prepares the environment and
+model weights on OSC; select the kernel your instructor announces. Choose one of the 10 design
+problems in `lab2_protein_design/data/design_menu.csv`. The scripts in `lab2_protein_design/env/`
+are for instructor setup.
 
 ## Notebooks
 
 Each notebook runs top-to-bottom as-is. Short **"Your turn"** exercises ask for short answers or
-small code edits; no coding background assumed. Figures you generate are saved next to the
+small code edits — no coding background assumed. Figures you generate are saved next to the
 notebook in your own clone.
+
+## Validated notebook checksums
+
+- Lab 2 `Lab2_Student.ipynb` — MD5 `ed43b8e27b4ae0a920002012182fb9d1`
+- Lab 3 `Lab3_Student.ipynb` — MD5 `cd95f6b79b51e5bb071214d014616479`
