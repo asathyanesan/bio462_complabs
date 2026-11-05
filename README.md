@@ -40,10 +40,13 @@ the download takes about a minute on OSC.
 
 ## Lab 2 — environment
 
-Lab 2 uses ESM3-open for generative protein design. The instructor prepares the environment and
-model weights on OSC; select the kernel your instructor announces. Choose one of the 10 design
-problems in `lab2_protein_design/data/design_menu.csv`. The scripts in `lab2_protein_design/env/`
-are for instructor setup.
+Lab 2 uses ESM3-open for generative protein design. The shared environment and weights are already installed for PNS0503. Students do not run the instructor installation scripts. If the ESM3 kernel is missing, run this in the Classroom Jupyter terminal:
+```bash
+bash env/start_lab2.sh
+```
+This registers the kernel and creates an additional notebook/data copy in your home directory without overwriting existing work. You may continue using the updated notebook in your repository.
+
+Choose one of the 10 design problems in `lab2_protein_design/data/design_menu.csv`. The scripts in `lab2_protein_design/env/` are for instructor setup.
 
 ## Notebooks
 
@@ -53,5 +56,5 @@ notebook in your own clone.
 
 ## Validated notebook checksums
 
-- Lab 2 `Lab2_Student.ipynb` — MD5 `ed43b8e27b4ae0a920002012182fb9d1`
+- Lab 2 `Lab2_Student.ipynb` — MD5 `69446bcaa3051dc81977784fb64d7f73`
 - Lab 3 `Lab3_Student.ipynb` — MD5 `cd95f6b79b51e5bb071214d014616479`
