@@ -3,6 +3,9 @@
 import os
 from pathlib import Path
 import tempfile
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 os.environ["HF_HOME"] = "/fs/ess/PNS0503/hf_cache"
 os.environ["HF_HUB_CACHE"] = "/fs/ess/PNS0503/hf_cache/hub"
@@ -13,6 +16,7 @@ os.environ["OMP_NUM_THREADS"] = "4"
 import torch
 from esm.models.esm3 import ESM3
 from esm.sdk.api import ESMProtein, ESMProteinError, GenerationConfig
+from pdb_confidence import save_pdb_with_plddt
 
 if not torch.cuda.is_available():
     raise RuntimeError("GPU validation requires an OSC allocation with --gres=gpu:1.")
@@ -37,9 +41,10 @@ assert structure.coordinates is not None
 assert structure.coordinates.shape == (32, 37, 3)
 with tempfile.TemporaryDirectory(prefix="bio462-esm3-verify-") as directory:
     pdb = Path(directory) / "test.pdb"
-    structure.to_pdb(str(pdb))
+    save_pdb_with_plddt(structure, str(pdb))
     atoms = [line for line in pdb.read_text().splitlines()
              if line.startswith("ATOM") and line[12:16].strip() == "CA"]
     assert len(atoms) == 32
     assert all(0 <= float(line[60:66]) <= 100 for line in atoms)
+    assert any(float(line[60:66]) > 0 for line in atoms)
 print("PASS: offline sequence + structure generation, 32 CA atoms, valid pLDDT", flush=True)

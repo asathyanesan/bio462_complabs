@@ -16,6 +16,8 @@ if [[ -e "$DEST" ]]; then
 else
     mkdir -p -- "$DEST"
     cp -- "$LAB_DIR/Lab2_Student.ipynb" "$DEST/"
+    cp -- "$LAB_DIR/pdb_confidence.py" "$DEST/"
+    cp -- "$LAB_DIR/sequence_comparison.py" "$DEST/"
     cp -R -- "$LAB_DIR/data" "$DEST/"
     chmod -R u+rwX,go-rwx -- "$DEST"
 fi
