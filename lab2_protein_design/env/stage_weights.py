@@ -1,31 +1,51 @@
 #!/usr/bin/env python
-"""stage_weights.py — one-time instructor step: download esm3-open weights into a shared cache.
+"""Instructor-only staging of public MIT-licensed ESM3 weights.
 
-Usage (on a GPU node, after install_esm3.sh):
-    export HF_TOKEN=<your token>          # from huggingface.co, after accepting the
-                                          # EvolutionaryScale Community License at
-                                          # https://huggingface.co/EvolutionaryScale/esm3
+Run with the shared environment's Python after install_esm3.sh:
     python stage_weights.py /fs/ess/PNS0503/hf_cache
 
-After this succeeds, students never need a token: the notebook sets HF_HOME to the shared
-cache and HF_HUB_OFFLINE=1.
+No Hugging Face login is required. Verify offline loading in a fresh process.
 """
 import os
 import sys
+from pathlib import Path
+import subprocess
 
 cache = sys.argv[1] if len(sys.argv) > 1 else "/fs/ess/PNS0503/hf_cache"
+os.umask(0o027)
 os.environ["HF_HOME"] = cache
-os.environ.pop("HF_HUB_OFFLINE", None)  # we ARE online here
+os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN"] = "1"
+os.environ.pop("HF_HUB_OFFLINE", None)
+os.environ.pop("HF_HUB_CACHE", None)
 
-from huggingface_hub import login  # noqa: E402
-login()  # prompts for the token (or reads HF_TOKEN)
+from huggingface_hub import snapshot_download  # noqa: E402
 
-from esm.models.esm3 import ESM3  # noqa: E402
-print("downloading esm3-open weights (~6 GB) into", cache, "...")
-model = ESM3.from_pretrained("esm3-open")
-print("weights cached OK")
+# Keep the original repository ID: esm 3.2.1 uses it for offline cache lookup.
+print("Downloading public ESM3 weights into", cache, "...", flush=True)
+snapshot_download(
+    repo_id="EvolutionaryScale/esm3-sm-open-v1",
+    cache_dir=str(Path(cache) / "hub"),
+    token=False,
+)
+offline_env = os.environ.copy()
+offline_env["HF_HUB_OFFLINE"] = "1"
+subprocess.run(
+    [sys.executable, "-c",
+     "from esm.models.esm3 import ESM3; "
+     "model = ESM3.from_pretrained('esm3-open'); "
+     "print('OFFLINE LOAD VERIFIED - ESM3 READY')"],
+    env=offline_env,
+    check=True,
+)
 
-# offline-load verification (what students will do)
-os.environ["HF_HUB_OFFLINE"] = "1"
-model2 = ESM3.from_pretrained("esm3-open")
-print("OFFLINE LOAD VERIFIED — ESM3 READY")
+# Include cache metadata created during the first model load.
+subprocess.run(
+    ["setfacl", "-R", "-P", "-m", "g::r-X,g:PNS0503:r-X,o::---", cache],
+    check=True,
+)
+for root, dirs, files in os.walk(cache):
+    subprocess.run(
+        ["setfacl", "-m",
+         "d:u::rwx,d:g::r-x,d:g:PNS0503:r-x,d:m::r-x,d:o::---", root],
+        check=True,
+    )

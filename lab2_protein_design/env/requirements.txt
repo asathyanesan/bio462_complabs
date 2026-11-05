@@ -1,0 +1,15 @@
+esm==3.2.1
+torch==2.3.0
+torchvision==0.18.0
+torchtext==0.18.0
+transformers==4.47.1
+numpy<2
+huggingface-hub<1
+httpx
+py3Dmol
+matplotlib
+pandas
+ipykernel
+ipywidgets
+nbconvert
+nbformat

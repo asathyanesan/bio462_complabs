@@ -1,46 +1,63 @@
 #!/usr/bin/env bash
-# =============================================================================
-# install_esm3.sh — one-time ESM3 environment build for BIO 462/594 Comp Lab 2
-# Run ON THE OSC PITZER GPU NODE (srun --gres=gpu:1) with the cuda module loaded:
-#     module load cuda
-#     bash install_esm3.sh /fs/ess/PNS0503/envs/esm3
-# ~10-15 min including the CUDA kernel install. Weights are staged separately
-# (see STAGE_WEIGHTS below) — this script only builds the environment.
-# =============================================================================
+# Instructor provisioning; students must not modify the shared environment.
 set -euo pipefail
+umask 0027
+export PYTHONNOUSERSITE=1
+export PYTHONDONTWRITEBYTECODE=1
 
 ENV_DIR="${1:-/fs/ess/PNS0503/envs/esm3}"
+CLASS_JUPYTER=/fs/ess/PNS0503/BIOLOGICAL_DISCOVERY_DAYTON/jupyter
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "== 1/4 creating venv at ${ENV_DIR} =="
-python3.11 -m venv "${ENV_DIR}" || { echo "python3.11 not found; try: module load python/3.11"; exit 1; }
-source "${ENV_DIR}/bin/activate"
+if [[ -e "$ENV_DIR" && "${2:-}" != "--resume" ]]; then
+    echo "Environment already exists: $ENV_DIR; use --resume only for a failed build." >&2
+    exit 1
+fi
 
-echo "== 2/4 installing torch (cu121) =="
-pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu121
+module load miniconda3/24.1.2-py310
+if [[ ! -e "$ENV_DIR" ]]; then
+    conda create --yes --prefix "$ENV_DIR" python=3.10 pip
+fi
+PYTHON="$ENV_DIR/bin/python"
 
-echo "== 3/4 installing esm + deps =="
-# 'esm[gpu]' adds xformers + cuequivariance CUDA kernels (Linux x86-64)
-pip install --no-cache-dir "esm[gpu]" || pip install --no-cache-dir esm
-pip install --no-cache-dir py3Dmol matplotlib pandas ipykernel nbconvert nbformat
-
-echo "== 4/4 registering Jupyter kernel + smoke test =="
-python -m ipykernel install --user --name esm3 --display-name "Python 3 (esm3)"
-
-python - << 'EOF'
+# Matched PyTorch/torchtext releases with CUDA 12.1 support for the class A100 GPUs.
+"$PYTHON" -m pip install --no-cache-dir --no-compile \
+    torch==2.3.0 torchvision==0.18.0 \
+    --index-url https://download.pytorch.org/whl/cu121
+"$PYTHON" -m pip install --no-cache-dir --no-compile \
+    -r "$SCRIPT_DIR/requirements.txt"
+"$PYTHON" -m pip check
+"$PYTHON" - <<'PY'
 import torch
-print("torch:", torch.__version__, "| cuda available:", torch.cuda.is_available())
-from esm.models.esm3 import ESM3          # noqa: F401  (import check only; weights staged separately)
+from esm.models.esm3 import ESM3
 from esm.sdk.api import ESMProtein, GenerationConfig
 from esm.utils.structure.protein_chain import ProteinChain
-print("ESM3 READY  (run STAGE_WEIGHTS block to download weights once)")
-EOF
+print("ESM3 imports OK; torch:", torch.__version__)
+PY
 
-# =============================================================================
-# STAGE_WEIGHTS — one-time, run by the INSTRUCTOR (needs your HuggingFace token):
-#   1. Create a HF account, open https://huggingface.co/EvolutionaryScale/esm3
-#   2. Accept the EvolutionaryScale Community License, create a token (Read permission)
-#   3. On a GPU node:  export HF_TOKEN=<your token>  then:
-#      source /fs/ess/PNS0503/envs/esm3/bin/activate
-#      python stage_weights.py /fs/ess/PNS0503/hf_cache
-#   Students then load offline from that cache — no token, no internet needed in class.
-# =============================================================================
+"$PYTHON" -m ipykernel install --prefix "$CLASS_JUPYTER" \
+    --name esm3 --display-name "Python (BIO 462/594 Lab 2 - ESM3)"
+"$PYTHON" - "$CLASS_JUPYTER/share/jupyter/kernels/esm3/kernel.json" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+spec = json.loads(path.read_text())
+spec["env"] = {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HOME": "/fs/ess/PNS0503/hf_cache",
+    "HF_HUB_CACHE": "/fs/ess/PNS0503/hf_cache/hub",
+    "HF_HUB_OFFLINE": "1",
+    "HF_HUB_DISABLE_IMPLICIT_TOKEN": "1",
+    "ESM3_HF_CACHE": "/fs/ess/PNS0503/hf_cache",
+    "OMP_NUM_THREADS": "4",
+}
+path.write_text(json.dumps(spec, indent=2) + "\n")
+PY
+setfacl -R -P -m g::r-X,g:PNS0503:r-X,o::--- \
+    "$ENV_DIR" "$CLASS_JUPYTER/share/jupyter/kernels/esm3"
+find "$ENV_DIR" "$CLASS_JUPYTER/share/jupyter/kernels/esm3" -type d \
+    -exec setfacl -m d:u::rwx,d:g::r-x,d:g:PNS0503:r-x,d:m::r-x,d:o::--- {} +
+echo "Shared ESM3 kernel installed. Next run: $PYTHON $SCRIPT_DIR/stage_weights.py"
