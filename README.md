@@ -56,5 +56,5 @@ notebook in your own clone.
 
 ## Validated notebook checksums
 
-- Lab 2 `Lab2_Student.ipynb` — MD5 `69446bcaa3051dc81977784fb64d7f73`
-- Lab 3 `Lab3_Student.ipynb` — MD5 `cd95f6b79b51e5bb071214d014616479`
+- Lab 2 `Lab2_Student.ipynb` — MD5 `7fa41adf4fa3091ce49997c801b9dc6f`
+- Lab 3 `Lab3_Student.ipynb` — MD5 `17f55c0bfda392a20c9aac8a1475cc8c`
