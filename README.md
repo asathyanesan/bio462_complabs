@@ -1,4 +1,4 @@
-# BIO 462/594 Molecular Biology — Computational Labs
+# BIO 462/594 Molecular Biology - Computational Labs
 
 Fall 2026, University of Dayton. Labs run on the Ohio Supercomputer Center (OSC) Pitzer cluster
 via OnDemand Jupyter.
@@ -26,7 +26,7 @@ The restore removes the replaced `lab2_structure/` files and downloads the curre
 `lab2_protein_design/` files; it leaves the other lab folders unchanged. Save any personal changes
 you want to keep from either Lab 2 folder elsewhere first. Instructions to start the Jupyter notebook for this lab are in the <a href="https://github.com/asathyanesan/bio462_complabs/raw/refs/heads/main/lab2_protein_design/Lab2_PreLab_Handout.docx" target="_blank" rel="noopener noreferrer">Pre-lab handout doc</a>. Once the jupyter app has been initiated, open `Lab2_Student.ipynb` in the updated folder in Jupyter and select the ESM3 kernel your instructor announces.
 
-## Lab 3 — one extra step (217 MB dataset)
+## Lab 3 - one extra step (217 MB dataset)
 
 The single-cell dataset is too large for GitHub. After cloning, run once:
 
@@ -35,10 +35,10 @@ cd ~/bio462_complabs/lab3_singlecell
 python data/download_dataset.py
 ```
 
-or run the first notebook cell, which does the same thing. Do this during the pre-class buffer —
+or run the first notebook cell, which does the same thing. Do this during the pre-class buffer -
 the download takes about a minute on OSC.
 
-## Lab 2 — environment
+## Lab 2 - environment
 
 Lab 2 uses ESM3-open for generative protein design. The shared environment and weights are already installed for PNS0503. Students do not run the instructor installation scripts. If the ESM3 kernel is missing, run this in the Classroom Jupyter terminal:
 ```bash
@@ -51,10 +51,10 @@ Choose one of the 10 design problems in `lab2_protein_design/data/design_menu.cs
 ## Notebooks
 
 Each notebook runs top-to-bottom as-is. Short **"Your turn"** exercises ask for short answers or
-small code edits — no coding background assumed. Figures you generate are saved next to the
+small code edits - no coding background assumed. Figures you generate are saved next to the
 notebook in your own clone.
 
 ## Validated notebook checksums
 
-- Lab 2 `Lab2_Student.ipynb` — MD5 `7fa41adf4fa3091ce49997c801b9dc6f`
-- Lab 3 `Lab3_Student.ipynb` — MD5 `17f55c0bfda392a20c9aac8a1475cc8c`
+- Lab 2 `Lab2_Student.ipynb` - MD5 `7fa41adf4fa3091ce49997c801b9dc6f`
+- Lab 3 `Lab3_Student.ipynb` - MD5 `17f55c0bfda392a20c9aac8a1475cc8c`
